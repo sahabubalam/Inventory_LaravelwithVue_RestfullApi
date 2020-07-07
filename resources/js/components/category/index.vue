@@ -5,14 +5,14 @@
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">All Employee</li>
+          <li class="breadcrumb-item active">All Category</li>
         </ol>
         <!-- Icon Cards-->
        <div class="row card container">
           <div class="card-header">
             <i class="fas fa-chart-area"></i>
             Employee Insert 
-            <router-link to="/create" class="btn btn-sm btn-info" id="add_new"> Add New</router-link>
+            <router-link to="/store-category" class="btn btn-sm btn-info" id="add_new"> Add New</router-link>
           </div>
           <div class="card-body">
           
@@ -24,26 +24,19 @@
 
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Photo</th>
-                      <th>Phone</th>
-                      <th>Salary</th>
-                      <th>Joining date</th>
+                      <th>Category Name</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                 
                   <tbody>
 
-                    <tr v-for="employee in filterSearch" :key="employee.id">
-                      <td>{{employee.name}}</td>
-                      <td><img :src="employee.photo" id="em_photo"></td>
-                      <td>{{employee.phone}}</td>
-                      <td>{{employee.salary}}</td>
-                      <td>{{employee.joining_date}}</td>
+                    <tr v-for="category in filterSearch" :key="category.id">
+                      <td>{{category.category_name}}</td>
+                      
                       <td>
-                        <router-link :to="{name: 'edit-employee',params:{id:employee.id}}" class="btn btn-sm btn-info">Edit</router-link>
-                        <a @click="deleteEmployee(employee.id)" class="btn btn-sm btn-danger">Delete</a>
+                        <router-link :to="{name: 'edit-category',params:{id:category.id}}" class="btn btn-sm btn-info">Edit</router-link>
+                        <a @click="deleteCategory(category.id)" class="btn btn-sm btn-danger">Delete</a>
                       </td>
                     </tr>
         
@@ -68,7 +61,7 @@
         data()
         {
             return{
-                employees:[],
+                categories:[],
                 searchItem:''
             }
             
@@ -77,20 +70,20 @@
         {
             filterSearch()
             {
-                return this.employees.filter(employee=>{
-                    return employee.phone.match(this.searchItem);
+                return this.categories.filter(category=>{
+                    return category.category_name.match(this.searchItem);
                 })
             }
         },
         methods:
         {
-            allEmployee()
+            allCategory()
                 {
-                    axios.get('/api/employee/')
-                    .then(({data})=> (this.employees=data))
+                    axios.get('/api/category/')
+                    .then(({data})=> (this.categories=data))
                     .catch()
                 },
-                deleteEmployee(id)
+                deleteCategory(id)
                 {
                     Swal.fire({
                     title: 'Are you sure?',
@@ -102,10 +95,10 @@
                     confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                     if (result.value) {
-                        axios.delete('/api/employee/'+id)
+                        axios.delete('/api/category/'+id)
                         .then(()=>{
-                            this.employees=this.employees.filter(employee=>{
-                                return employee.id !=id
+                            this.categories=this.categories.filter(category=>{
+                                return category.id !=id
                             })
                         })
                         .catch(console.log('error'))
@@ -122,7 +115,7 @@
         },
         created()
         {
-            this.allEmployee();
+            this.allCategory();
         }
         	
     }

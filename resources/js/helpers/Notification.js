@@ -9,6 +9,15 @@ class Notification
             timeout:1000, 
         }).show();
     }
+    update()
+    {
+        new Noty({
+            type:'success',
+            layout:'topRight',
+            text: 'Successfully updated',
+            timeout:1000, 
+        }).show();
+    }
     alert()
     {
         new Noty({

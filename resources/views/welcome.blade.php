@@ -113,8 +113,28 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
            
-            <a class="dropdown-item" href="login.html">Add Supplier</a>
-            <a class="dropdown-item" href="register.html">All Supplier</a>
+            <router-link class="dropdown-item" to="/store-supplier">Add Supplier</router-link>
+            <router-link class="dropdown-item" to="/supplier">All Supplier</router-link>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Categories</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+           
+            <router-link class="dropdown-item" to="/store-category">Add Category</router-link>
+            <router-link class="dropdown-item" to="/category">All Category</router-link>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Products</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+           
+            <router-link class="dropdown-item" to="/store-product">Add Product</router-link>
+            <router-link class="dropdown-item" to="/product">All Product</router-link>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="charts.html">
